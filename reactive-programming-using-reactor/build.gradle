@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "8.14"
+}
+
+group 'com.bibhu.spring.reactive-programming'
+version '1.0-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    implementation("io.projectreactor:reactor-core:3.7.7")
+	//reactor-debug-agent
+    implementation('io.projectreactor:reactor-tools:3.7.7')
+
+    //log - logback
+    implementation("ch.qos.logback:logback-classic:1.5.18")
+
+    //testing
+    testImplementation("org.junit.platform:junit-platform-launcher:1.13.3")
+    testImplementation 'org.junit.platform:junit-platform-engine:1.13.3'
+    testImplementation("io.projectreactor:reactor-test:3.7.7")
+    testImplementation('org.junit.jupiter:junit-jupiter:5.13.3')
+    testImplementation("org.mockito:mockito-core:5.18.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceSets{
+	test {
+		java.srcDirs = ['src/test/java/']
+	}
+}
