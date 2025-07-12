@@ -11,7 +11,7 @@ public class FluxAndMonoGeneratorService {
         return Flux.fromIterable(List.of("alex", "ben", "chloe")).log();
     }
 
-    public Mono<String> nameMono() {
+    public Mono<String> namesMono() {
         return Mono.just("alex").log();
     }
 
@@ -22,7 +22,7 @@ public class FluxAndMonoGeneratorService {
             System.out.println("Flux Name is : " + name);
         });
 
-        service.nameMono().subscribe(name -> {
+        service.namesMono().subscribe(name -> {
             System.out.println("Mono Name is : " + name);
         });
 
