@@ -6,6 +6,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 
 public class FluxAndMonoGeneratorService {
 
@@ -83,6 +84,37 @@ public class FluxAndMonoGeneratorService {
         return Mono.just(charList);
     }
 
+    public Flux<String> namesFlux_transform() {
+        Function<Flux<String>, Flux<String>> transformMap = name -> name.map(String::toUpperCase)
+                .filter(s -> s.length() > 3);
+
+        return Flux.fromIterable(List.of("alex", "ben", "chloe"))
+                .transform(transformMap)
+                .flatMap(s -> Flux.fromArray(s.split(""))); //ALEX -> Flux(A,L,E,X)
+    }
+
+    public Flux<String> namesFlux_defaultIfEmpty() {
+        Function<Flux<String>, Flux<String>> transformMap = name -> name.map(String::toUpperCase)
+                .filter(s -> s.length() > 7);
+
+        return Flux.fromIterable(List.of("alex", "ben", "chloe"))
+                .transform(transformMap)
+                .flatMap(s -> Flux.fromArray(s.split("")))  //ALEX -> Flux(A,L,E,X)
+                .defaultIfEmpty("default");
+    }
+
+    public Flux<String> namesFlux_switchIfEmpty() {
+        Function<Flux<String>, Flux<String>> transformMap = name -> name.map(String::toUpperCase)
+                .filter(s -> s.length() > 7);
+
+        var defaultFlux = Flux.just("default");
+
+        return Flux.fromIterable(List.of("alex", "ben", "chloe"))
+                .transform(transformMap)
+                .flatMap(s -> Flux.fromArray(s.split("")))  //ALEX -> Flux(A,L,E,X)
+                .switchIfEmpty(defaultFlux);
+    }
+
     public static void main(String[] args) {
         FluxAndMonoGeneratorService service = new FluxAndMonoGeneratorService();
 
@@ -125,5 +157,18 @@ public class FluxAndMonoGeneratorService {
         service.namesMono_flatmap().subscribe(name -> {
             System.out.println("Flat Map mono Name is : " + name);
         });
+
+        service.namesFlux_transform().subscribe(name -> {
+            System.out.println("Transform Flux Name is : " + name);
+        });
+
+        service.namesFlux_defaultIfEmpty().subscribe(name -> {
+            System.out.println("Default if Empty Flux Name is : " + name);
+        });
+
+        service.namesFlux_switchIfEmpty().subscribe(name -> {
+            System.out.println("Switch if Empty Flux Name is : " + name);
+        });
+
     }
 }

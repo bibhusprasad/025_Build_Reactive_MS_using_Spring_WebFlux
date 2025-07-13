@@ -103,4 +103,28 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext(List.of("A", "L", "E", "X"))
                 .verifyComplete();
     }
+
+    @Test
+    void test_namesFlux_transform() {
+        var transformMap = service.namesFlux_transform();
+        StepVerifier.create(transformMap)
+                .expectNext("A", "L", "E", "X", "C", "H", "L", "O", "E")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_namesFlux_default() {
+        var defaultFlux = service.namesFlux_defaultIfEmpty();
+        StepVerifier.create(defaultFlux)
+                .expectNext("default")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_namesFlux_switchIfEmpty() {
+        var defaultFlux = service.namesFlux_switchIfEmpty();
+        StepVerifier.create(defaultFlux)
+                .expectNext("default")
+                .verifyComplete();
+    }
 }

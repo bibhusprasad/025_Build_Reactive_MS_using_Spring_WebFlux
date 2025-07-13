@@ -9,6 +9,7 @@ https://www.udemy.com/course/build-reactive-restful-apis-using-spring-boot-webfl
 * [Success / error usecase diagram](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/07bb24cd122bbc3f551b0f512f82c53210bd7542)
 * [first basic Flux and Mono use case](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/ff77ebfb0bb3013ac429de761683ecb536467521)
 * [test case for Flux and Mono](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/b999c0a14ab24f18ba50ac07b13fbc37bab3a314)
+* [Flux Mono basic operator map, filter, flatmap, concatmap](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/fc65abac3e7f215e5478738d72270ff02e4b0bd7)
 
 # Reactive Stream
 ## How it Works together
