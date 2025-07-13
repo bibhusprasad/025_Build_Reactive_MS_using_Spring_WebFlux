@@ -127,4 +127,92 @@ public class FluxAndMonoGeneratorServiceTest {
                 .expectNext("default")
                 .verifyComplete();
     }
+
+    @Test
+    void test_explore_concat() {
+        var concatFlux = service.explore_concat();
+        StepVerifier.create(concatFlux)
+                .expectNext("A", "B", "C", "D", "E", "F")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_concatWith() {
+        var concatWithFlux = service.explore_concatWith() ;
+        StepVerifier.create(concatWithFlux)
+                .expectNext("A", "B", "C", "D", "E", "F")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_concatWith_mono() {
+        var concatMono = service.explore_concatWith_mono() ;
+        StepVerifier.create(concatMono)
+                .expectNext("A", "B")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_merge() {
+        var mergeFlux = service.explore_merge();
+        StepVerifier.create(mergeFlux)
+                .expectNext("A", "D", "B", "E", "C", "F")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_mergeWith() {
+        var mergeWithFlux = service.explore_mergeWith();
+        StepVerifier.create(mergeWithFlux)
+                .expectNext("A", "D", "B", "E", "C", "F")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_mergeWith_mono() {
+        var mergeMono = service.explore_mergeWith_mono() ;
+        StepVerifier.create(mergeMono)
+                .expectNext("A", "B")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_mergeSequential() {
+        var mergeSequentialFlux = service.explore_mergeSequential();
+        StepVerifier.create(mergeSequentialFlux)
+                .expectNext("A", "B", "C", "D", "E", "F")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_zip() {
+        var zipFlux = service.explore_zip();
+        StepVerifier.create(zipFlux)
+                .expectNext("AD", "BE", "CF")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_zip_1() {
+        var zipFlux = service.explore_zip_1();
+        StepVerifier.create(zipFlux)
+                .expectNext("AD14", "BE25", "CF36")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_zipWith() {
+        var zipWithFlux = service.explore_zipWith();
+        StepVerifier.create(zipWithFlux)
+                .expectNext("AD", "BE", "CF")
+                .verifyComplete();
+    }
+
+    @Test
+    void test_explore_zipWith_mono() {
+        var zipWithMono= service.explore_zipWith_mono();
+        StepVerifier.create(zipWithMono)
+                .expectNext("AB")
+                .verifyComplete();
+    }
 }
