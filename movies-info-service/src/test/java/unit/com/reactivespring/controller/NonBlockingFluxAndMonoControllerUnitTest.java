@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @WebFluxTest(controllers = NonBlockingFluxAndMonoController.class)
 @AutoConfigureWebTestClient
-class NonBlockingFluxAndMonoControllerTest {
+class NonBlockingFluxAndMonoControllerUnitTest {
 
     @Autowired
     WebTestClient webTestClient;
