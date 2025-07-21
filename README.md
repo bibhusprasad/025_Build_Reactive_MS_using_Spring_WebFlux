@@ -16,7 +16,7 @@ https://www.udemy.com/course/build-reactive-restful-apis-using-spring-boot-webfl
 
 ### Spring Web Flux
 * [Spring WebFlux : Added new movies-info-service ms](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/70c0efeb4d2eea360cb38adfa8e78013ab08dd80)
-
+* [Simple Non Blocking RESTFUL API](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/b2abb9cd0e9cb724a1aa4c82db6ff425a0efd909)
 
 
 # Reactive Stream
