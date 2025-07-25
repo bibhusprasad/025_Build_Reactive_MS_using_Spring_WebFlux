@@ -43,7 +43,6 @@ public class MovieInfoControllerIntgTest {
                 .blockLast();
     }
 
-
     @AfterEach
     void tearDown() {
         movieInfoRepository.deleteAll().block();
