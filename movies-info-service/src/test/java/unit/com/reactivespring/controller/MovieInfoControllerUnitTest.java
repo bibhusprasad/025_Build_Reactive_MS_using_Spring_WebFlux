@@ -72,4 +72,25 @@ public class MovieInfoControllerUnitTest {
                 .hasSize(3);
     }
 
+    @Test
+    void addMovieInfo_validation() {
+
+        var movieInfo = new MovieInfo(null, "Batman Begins",
+                -2005, List.of("Christian Bale", "Michael Cane"), LocalDate.parse("2005-06-15"));
+
+        when(movieInfoService.addMovieInfo(any())).thenReturn(Mono.just(movieInfo));
+
+        webTestClient.post()
+                .uri(MOVIE_INFO_URL)
+                .bodyValue(movieInfo)
+                .exchange()
+                .expectStatus()
+                .isBadRequest()
+                .expectBody(String.class)
+                .consumeWith(movieInfoEntityExchangeResult -> {
+                    var responseBody = movieInfoEntityExchangeResult.getResponseBody();
+                    System.out.println("response body : " + responseBody);
+                });
+    }
+
 }
