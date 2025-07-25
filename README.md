@@ -18,6 +18,7 @@ https://www.udemy.com/course/build-reactive-restful-apis-using-spring-boot-webfl
 * [Spring WebFlux : Added new movies-info-service ms](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/70c0efeb4d2eea360cb38adfa8e78013ab08dd80)
 * [Simple Non Blocking RESTFUL API](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/b2abb9cd0e9cb724a1aa4c82db6ff425a0efd909)
 * [Simple Non Blocking RESTFUL API Test Case](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/63e74a3ebdaa0302fd5cbf213af1a6945da6ff8e)
+* [CURD : Reactive Programming in Mongo DB for the MovieInfo Service](https://github.com/bibhusprasad/025_Build_Reactive_MS_using_Spring_WebFlux/commit/ef89585a2cced50a64a97668565fe00646d54d65)
 
 
 # Reactive Stream
