@@ -124,4 +124,18 @@ public class MovieInfoControllerIntgTest {
                 .isNoContent();
     }
 
+    @Test
+    void updateMovieInfo_notFound() {
+        String movieInfoId = "def";
+        var movieInfo = new MovieInfo("abc", "Dark Knight Rises return",
+                2022, List.of("Christian Bale", "Tom Hardy"), LocalDate.parse("2022-07-20"));
+
+        webTestClient.put()
+                .uri(MOVIE_INFO_URL+"/{id}",movieInfoId)
+                .bodyValue(movieInfo)
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
 }

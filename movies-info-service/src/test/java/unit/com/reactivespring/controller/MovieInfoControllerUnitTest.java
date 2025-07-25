@@ -14,8 +14,10 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest(controllers = MovieInfoController.class)
@@ -92,5 +94,33 @@ public class MovieInfoControllerUnitTest {
                     System.out.println("response body : " + responseBody);
                 });
     }
+
+    @Test
+    void updateMovieInfo() {
+        var movieInfoId = "abc";
+        var movieInfo = new MovieInfo(null, "Dark Knight Rises1",
+                2005, List.of("Christian Bale", "Michael Cane"), LocalDate.parse("2005-06-15"));
+
+        when(movieInfoService.updateMovieInfo(isA(String.class), isA(MovieInfo.class))).thenReturn(
+                Mono.just(new MovieInfo(movieInfoId, "Dark Knight Rises1",
+                        2005, List.of("Christian Bale", "Michael Cane"), LocalDate.parse("2005-06-15")))
+        );
+
+        webTestClient
+                .put()
+                .uri(MOVIE_INFO_URL + "/{id}", movieInfoId)
+                .bodyValue(movieInfo)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .expectBody(MovieInfo.class)
+                .consumeWith(movieInfoEntityExchangeResult -> {
+                    var updatedMovieInfo = movieInfoEntityExchangeResult.getResponseBody();
+                    assert updatedMovieInfo != null;
+                    assert updatedMovieInfo.getMovieInfoId() != null;
+                    assertEquals("Dark Knight Rises1", updatedMovieInfo.getName());
+                });
+    }
+
 
 }
